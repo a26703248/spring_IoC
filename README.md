@@ -1,7 +1,6 @@
 # spring_IoC
 ### Spring Bean refresh 流程
-
-![Alt refresh](.\src\main\resources\images\Image 1.png)
+<img src=".\src\main\resources\images\Image 1.png"/>
 1. prepareRefresh();刷新前的預先處理
    ![Alt prepareRefresh](.\src\main\resources\images\Image 2.png)
    * getEnvironment初始化屬性設定;子類自訂義個人屬性設置方法
