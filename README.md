@@ -1,16 +1,16 @@
 <h1 id="spring_ioc">spring_IoC</h1>
 <h3 id="spring-bean-refresh-">Spring Bean refresh 流程</h3>
-<p><img src=".\src\main\resources\images\Image 1.png" alt="Alt refresh"></p>
+<p><img src=".\src\main\resources\images\image_1.png" alt="Alt refresh"></p>
 <ol>
 <li>prepareRefresh();刷新前的預先處理
-<img src=".\src\main\resources\images\Image 2.png" alt="Alt prepareRefresh"><ul>
+<img src=".\src\main\resources\images\image_2.png" alt="Alt prepareRefresh"><ul>
 <li>getEnvironment初始化屬性設定;子類自訂義個人屬性設置方法</li>
 <li>earlyApplicationEvent().validateRequiredProperties();驗證屬性合法性</li>
 <li>earlyApplicationEvents = new LinkHashSet&lt;ApplicationEvent&gt;();保存初期事件</li>
 </ul>
 </li>
 <li>obtainFreshBeanFactory();獲得BeanFactory
-<img src=".\src\main\resources\images\Image 4.png" alt="Alt obtainFreshBeanFactory"><ul>
+<img src=".\src\main\resources\images\image_4.png" alt="Alt obtainFreshBeanFactory"><ul>
 <li>refreshBeanFactory();刷新建立BeanFactory</li>
 <li>建立 this.beanFactory = new DefaultListableBeanFactory() ;設定Id</li>
 <li>getBeanFactory();返回 GenericApplicationContext 建立的 BeanFactory 物件</li>
@@ -18,7 +18,7 @@
 </ul>
 </li>
 <li>prepareBeanFactory(beanFactory);BeanFactory 的準備工作(BeanFactory 準備工作)
-<img src=".\src\main\resources\images\Image 5.png" alt="Alt prepareBeanFactory"><ul>
+<img src=".\src\main\resources\images\image_5.png" alt="Alt prepareBeanFactory"><ul>
 <li>設定 BeanFactory 的 ClassLoader、表達式解析器</li>
 <li>添加部分 BeanPostProcessor(ApplicationContextAwareProcessor)</li>
 <li>設定忽略自動裝配的介面 EnvironmentAware、EmbeddedValueResolverAware、...等</li>
@@ -31,15 +31,15 @@
 </ul>
 </li>
 <li>postProcessBeanFactory(beanFactory);BeanFactory 準備工作完成的後置器處理
-<img src=".\src\main\resources\images\Image 6.png" alt="Alt postProcessBeanFactory"><ul>
+<img src=".\src\main\resources\images\image_6.png" alt="Alt postProcessBeanFactory"><ul>
 <li>子類可同過複寫 postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 方法增加一些準備工作</li>
 </ul>
 </li>
 <li>invokeBeanFactoryPostProcessors(beanFactory);執行所有繼承 BeanPostProcessor 子類
-<img src=".\src\main\resources\images\Image 7.png" alt="Alt invokeBeanFactoryPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_7.png" alt="Alt invokeBeanFactoryPostProcessors"><ul>
 <li>BeanPostProcessor: BeanFactory 後置處理器，在 BeanFactory 準備工作完成後執行兩個介面
 BeanDefinitionRegistryPostProcessor、BeanPostProcessor
-<img src=".\src\main\resources\images\Image 9.png" alt="Alt invokeBeanFactoryPostProcessors"></li>
+<img src=".\src\main\resources\images\image_9.png" alt="Alt invokeBeanFactoryPostProcessors"></li>
 <li>執行 BeanPostProcessor 的方法<ul>
 <li>獲得所有 BeanDefinitionRegistryPostProcessor</li>
 <li>優先執行時做 PriorityOrdered 介面的 BeanDefinitionRegistryPostProcessor、
@@ -63,7 +63,7 @@ postProcessor、postProcessBeanDefinitionRegistry(registry)</li>
 </ul>
 </li>
 <li>registerBeanPostProcessors(beanFactory);註冊 BeanPostProcessor(Bean的後置處理器)，攔截 Bean 建立的過程
- <img src=".\src\main\resources\images\image 10.png" alt="alt registerBeanPostProcessors"><ul>
+ <img src=".\src\main\resources\images\image_10.png" alt="alt registerBeanPostProcessors"><ul>
 <li>不同類型的 BeanPostProcessor，在 Bean 建立前後的執行時間也不同<br>BeanPostProcessor<br>InstantiationAwareBeanPostProcessor<br>DestructionAwareBeanPostProcessor<br>SmartInstantiationAwareBeanPostProcessor<br>MergedBeanDefinitionPostProcessor<ul>
 <li>獲得所有的 BeanPostProcessor;BeanPostProcessor 也支持 Ordered、PriorityOrdered 排序</li>
 <li>先註冊 PriorityOrdered 的 BeanPostProcessor，把每個 BeanPostProcessor，添加到 
@@ -80,7 +80,7 @@ BeanFactory 中</li>
 </ul>
 </li>
 <li>initMessageSource();初始化MessageSource物件(國際化、消息綁定、消息解析)
-<img src=".\src\main\resources\images\image 11.png" alt="alt registerBeanPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_11.png" alt="alt registerBeanPostProcessors"><ul>
 <li>獲得 BeanFactory</li>
 <li>尋找容器中是否有 MessageSource 覆值給 messageSource，沒有則會建立 DelegatingMessageSource
 取得國際化設定文件中的 key值，能按區域訊息取得</li>
@@ -88,7 +88,7 @@ BeanFactory 中</li>
 </ul>
 </li>
 <li>initApplicationEventMulticaster();初始化事件發送器
-<img src=".\src\main\resources\images\image 12.png" alt="alt registerBeanPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_12.png" alt="alt registerBeanPostProcessors"><ul>
 <li>獲得所有的 BeanPostProcessor</li>
 <li>從 BeanFactory 尋找 applicationEventMulticaster 的 ApplicationEventMulticaster</li>
 <li>沒有則建立 SimpleApplicationEventMulticaster</li>
@@ -96,19 +96,19 @@ BeanFactory 中</li>
 </ul>
 </li>
 <li>onRefresh();
-<img src=".\src\main\resources\images\image 13.png" alt="alt registerBeanPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_13.png" alt="alt registerBeanPostProcessors"><ul>
 <li>保留給子類別複寫使用，在容器更新的時候自訂義邏輯</li>
 </ul>
 </li>
 <li>registerListeners(); 註冊所有監聽器
-<img src=".\src\main\resources\images\image 14.png" alt="alt registerBeanPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_14.png" alt="alt registerBeanPostProcessors"><ul>
 <li>取得所有 ApplicationListener</li>
 <li>將每個監停器註冊到 ApplicationEventMulticaster 中</li>
 <li>發送之前發生的動作</li>
 </ul>
 </li>
 <li>finishBeanFactoryInitialization(beanFactory);初始化所有剩下的 Bean
-<img src=".\src\main\resources\images\image 15.png" alt="alt registerBeanPostProcessors"><ul>
+<img src=".\src\main\resources\images\image_15.png" alt="alt registerBeanPostProcessors"><ul>
 <li>獲得容器中的所有 Bean，依序進行初始化和建立物件</li>
 <li>獲得 Bean 的定義訊息，RootBeanDefinition</li>
 <li>判斷 Bean 是否為抽象、單例、懶加載<ul>
@@ -174,7 +174,7 @@ onRefresh() 方法</li>
 </li>
 <li>總結</li>
 <li>Spring IoC 容器中會先儲存註冊的 Bean 物件<ol>
-<li>xml 註冊 bean: <bean></li>
+<li>xml 註冊 bean: &lt;bean&gt;</li>
 <li>註解註冊 bean: @Service、@Component、@Bean、...</li>
 </ol>
 </li>
