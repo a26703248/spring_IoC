@@ -1,4 +1,7 @@
 <h1 id="spring_ioc">spring_IoC</h1>
+<h3>Bean 生命週期</h3>
+<img src=".\src\main\resources\images\bean_lifecycle.png" alt="Bean Lifecycle">
+
 <h3 id="spring-bean-refresh-">Spring Bean refresh 流程</h3>
 <p><img src=".\src\main\resources\images\Image_1.png" alt="Alt refresh"></p>
 <ol>
